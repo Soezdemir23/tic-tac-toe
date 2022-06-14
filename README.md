@@ -1,7 +1,7 @@
 # tic-tac-toe
 Tic-Tac-Toe game made with TS/SASS/HTML, with random field checking.
-
-
+## Where can I see it in Action?
+https://soezdemir23.github.io/tic-tac-toe/
 ## How did it go?`
 At first it went great, but when it went to implement the minimax
 algorithm, it became apparent that I hardcoded myself into a corner 
