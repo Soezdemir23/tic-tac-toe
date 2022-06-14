@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <script src="./app.js" defer></script>
+    <link rel="stylesheet" href="./dist/css/style.css">
+    <script src="./src/app.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marmelad&family=Source+Code+Pro:wght@800&display=swap" rel="stylesheet">
@@ -16,26 +16,31 @@
     If not, we should probably stack them atop-->
 
 <body>
+    <dialog class="modal" id="modal">    
+        <h2></h2>
+        <p></p>
+        
+    </dialog>
     <!--Title, Drop Down Menu for later, -->
     <header>
-        <span>Difficulty</span>
+        <span id="difficulty">Difficulty</span>
         <h1><span>Tic</span>-<span>Tac</span>-<span>Toe</span></h1>
-        <span>Settings</span>
+        <span id="settings">Settings</span>
     </header>
     <!-- Container for our grid system -->
     <section>
-        <div class="grid-child" data-nr="0">X</div>
-        <div class="grid-child" data-nr="1">X</div>
-        <div class="grid-child" data-nr="2">X</div>
-        <div class="grid-child" data-nr="3">X</div>
-        <div class="grid-child" data-nr="4">X</div>
-        <div class="grid-child" data-nr="5">X</div>
-        <div class="grid-child" data-nr="6">X</div>
-        <div class="grid-child" data-nr="7">X</div>
-        <div class="grid-child" data-nr="8">O</div>    
+        <div class="grid-child" data-nr="0"></div>
+        <div class="grid-child" data-nr="1"></div>
+        <div class="grid-child" data-nr="2"></div>
+        <div class="grid-child" data-nr="3"></div>
+        <div class="grid-child" data-nr="4"></div>
+        <div class="grid-child" data-nr="5"></div>
+        <div class="grid-child" data-nr="6"></div>
+        <div class="grid-child" data-nr="7"></div>
+        <div class="grid-child" data-nr="8"></div>    
     </section>
     <!--Maybe an about-->
-    <footer>Hello</footer>
+    <footer><a href=""><img src="./src/img/GitHub-Mark-32px.png" alt="Github logo"</a></footer>
 </body>
 
 </html>

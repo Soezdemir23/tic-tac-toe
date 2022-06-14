@@ -1,0 +1,196 @@
+/*
+002642
+840032
+e59500
+e5dada
+02040f
+*/
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Marmelad", sans-serif;
+  font-family: "Source Code Pro", monospace;
+}
+
+body {
+  background-color: #e59500;
+  display: flex;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  background-color: #02040f;
+  border-radius: 12px;
+}
+
+#settings {
+  display: hidden;
+  color: #e59500;
+}
+
+#difficulty {
+  display: hidden;
+  color: #e59500;
+}
+
+.grid-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6rem;
+  background-color: #E5DADA;
+  color: #02040f;
+  border-radius: 12px;
+}
+
+.crossed {
+  background-color: #840032;
+  color: #e5dada;
+}
+
+.ooed {
+  background-color: #002642;
+  color: #e59500;
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  border: none;
+}
+.modal h2 {
+  text-align: center;
+}
+
+.modal::backdrop {
+  background-color: #000000;
+}
+
+@media (min-width: 375px) {
+  body {
+    flex-direction: column;
+  }
+
+  header {
+    display: flex;
+    justify-content: center;
+  }
+  header #settings {
+    display: none;
+  }
+  header #difficulty {
+    display: none;
+  }
+
+  section {
+    flex-grow: 1;
+    gap: 0.5rem;
+    margin: 1rem;
+    margin-bottom: 4rem;
+    box-shadow: 5px 5px 43px 0px #000000;
+  }
+  section .grid-child {
+    height: 150px;
+  }
+
+  footer {
+    padding-top: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}
+@media (min-width: 390px) and (min-height: 844px) {
+  header {
+    padding-top: 1rem;
+  }
+
+  section {
+    margin: 8rem 1rem;
+  }
+}
+@media (min-width: 414px) and (min-height: 896px) {
+  header {
+    padding-top: 1rem;
+  }
+
+  section {
+    margin: 7rem 1rem 8rem 1rem;
+  }
+
+  footer {
+    margin-top: 3rem;
+  }
+}
+@media (min-width: 412px) {
+  header {
+    padding-top: 1rem;
+  }
+
+  section {
+    margin-bottom: 11rem;
+  }
+}
+@media (min-width: 540px) {
+  header {
+    padding-bottom: 2rem;
+  }
+
+  section {
+    margin-bottom: 4rem;
+  }
+}
+@media (min-width: 768px) {
+  header {
+    padding: 4rem 3rem;
+  }
+  header h1 {
+    font-size: 2.5rem;
+  }
+
+  section {
+    margin: 3rem 1rem;
+  }
+  section .grid-child {
+    height: 250px;
+  }
+}
+@media (min-width: 912px) {
+  section {
+    margin: 4rem 1rem;
+  }
+  section .grid-child {
+    height: 300px;
+  }
+}
+@media (min-width: 1440px) {
+  section {
+    margin: 1rem 10rem;
+  }
+}
+@media (min-width: 2560px) {
+  header {
+    font-size: 4rem;
+  }
+
+  section {
+    margin: 2rem 30rem;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
