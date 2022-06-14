@@ -20,7 +20,8 @@ rewrote it in Typescript, using OOP as much as I can remember.
 The typing and the atomicity that I tried to adhere helped me to
 test and improve every part of the game. 
 
-And tho I tried to implement the Minimax algorithm, I realized that I lacked experience and knowledge
+And tho I tried to implement the Minimax algorithm, I realized that I lacked experience and knowledge and had to cope 
+for now with using random numbers.
 
 ## What did I manage to implement?
 + mobile layout for almost any given device on microsoft edge's device emulation except
@@ -31,7 +32,9 @@ And tho I tried to implement the Minimax algorithm, I realized that I lacked exp
 + a modal that let's you know who won or lost
 
 
-## What could I have done?
+## What could I have done to make it smoother?
 + Definitely research what I want some more.
 + Read the whole "assignment" I set to myself and think harder about the solution
-+ Start
+
+## Will I expand this project?
+Most definitely, all the projects I post here are going to be refactored and expanded upon as I become more experienced and knowledgable.
