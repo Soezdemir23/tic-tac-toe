@@ -79,6 +79,17 @@ var DisplayController = /** @class */ (function () {
             gridItem.classList.remove("crossed");
         });
     };
+    DisplayController.prototype.getModal = function (ti, pa) {
+        var modal = document.getElementById("modal");
+        var title = modal === null || modal === void 0 ? void 0 : modal.querySelector("h2");
+        title.textContent = ti;
+        var paragraph = document.createElement("p");
+        paragraph.textContent = pa;
+        modal === null || modal === void 0 ? void 0 : modal.append(title, paragraph);
+        // this function exists, but throws an error due to the way TS currently is.
+        //@ts-ignore
+        modal.show();
+    };
     return DisplayController;
 }());
 var gameRules = /** @class */ (function () {
@@ -159,23 +170,27 @@ var gameRules = /** @class */ (function () {
                 console.log("Player one wins!");
                 console.log("Cleaning the screen and resetting");
                 this.resetArray();
+                display.getModal("Playe One Won", "Repeat? Refresh");
                 display.resetSections();
+                this.gameOverScreen();
                 this.rounds = 0;
-                break;
+                return true;
             case 2:
                 console.log("Player two wins!");
                 console.log("Cleaning the screen and resetting");
                 this.resetArray();
+                display.getModal("Player Two Won", "Repeat the game");
                 display.resetSections();
                 this.rounds = 0;
-                break;
+                return true;
             case 3:
                 console.log("Draw!");
                 console.log("Cleaning the screen and resetting");
                 this.resetArray();
+                display.getModal("DRAW", "Repeat the game?");
                 display.resetSections();
                 this.rounds = 0;
-                break;
+                return true;
             default:
                 break;
         }
@@ -195,6 +210,7 @@ var gameRules = /** @class */ (function () {
  */
 var gameLogic = /** @class */ (function () {
     function gameLogic() {
+        this.gameOver = false;
         this.playerOne = new Player("One", "X");
         this.playerTwo = new Player("Two", "O");
         this.playerTwo.toggleComputer();
@@ -211,28 +227,30 @@ var gameLogic = /** @class */ (function () {
             var target = event.target;
             // only runs this part, if the dataset- attribute isn't empty and the given target.dataset, nested inside, has no
             // other textContent than ""
-            if (target.dataset.nr !== undefined) {
-                if (target.textContent === "") {
-                    _this.display.setIndex(parseInt(target.dataset.nr));
-                    // only call it, if the player is on. The player is odd
-                    if (_this.rules.getRounds() % 2 === 1) {
-                        _this.rules.insertSign(_this.playerOne, _this.display.getIndex());
-                        _this.display.setSections(_this.playerOne.getSign(), _this.display.getIndex());
+            if (_this.gameOver === false) {
+                if (target.dataset.nr !== undefined) {
+                    if (target.textContent === "") {
+                        _this.display.setIndex(parseInt(target.dataset.nr));
+                        // only call it, if the player is on. The player is odd
+                        if (_this.rules.getRounds() % 2 === 1) {
+                            _this.rules.insertSign(_this.playerOne, _this.display.getIndex());
+                            _this.display.setSections(_this.playerOne.getSign(), _this.display.getIndex());
+                        }
+                        //} else { this is a test
+                        _this.rules.incrementRound();
+                        if (_this.rules.getRounds() % 2 === 0 && _this.rules.getRounds() < 9) {
+                            //check if computer is turned on, that is when the setting is turned to minimizing
+                            do {
+                                _this.display.setIndex(Math.floor(Math.random() * 9));
+                            } while (_this.rules.getArray()[_this.display.getIndex()] !== ""); // wh
+                            _this.rules.insertSign(_this.playerTwo, _this.display.getIndex());
+                            _this.display.setSections(_this.playerTwo.getSign(), _this.display.getIndex());
+                        }
+                        // check the conditions, the null/undefined will never happen because it falls through in the handleResult function
+                        setTimeout(function () {
+                            _this.gameOver = _this.rules.handleResult(_this.rules.resultChecker(), _this.display);
+                        }, 1000);
                     }
-                    //} else { this is a test
-                    _this.rules.incrementRound();
-                    if (_this.rules.getRounds() % 2 === 0 && _this.rules.getRounds() < 9) {
-                        //check if computer is turned on, that is when the setting is turned to minimizing
-                        do {
-                            _this.display.setIndex(Math.floor(Math.random() * 9));
-                        } while (_this.rules.getArray()[_this.display.getIndex()] !== ""); // wh
-                        _this.rules.insertSign(_this.playerTwo, _this.display.getIndex());
-                        _this.display.setSections(_this.playerTwo.getSign(), _this.display.getIndex());
-                    }
-                    // check the conditions, the null/undefined will never happen because it falls through in the handleResult function
-                    setTimeout(function () {
-                        _this.rules.handleResult(_this.rules.resultChecker(), _this.display);
-                    }, 1000);
                 }
             }
         });

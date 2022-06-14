@@ -182,7 +182,7 @@ class gameRules {
         } return 0
     }
     // probably have to move this to the display contrller
-    public handleResult(result: number, display: DisplayController): void | undefined {
+    public handleResult(result: number, display: DisplayController): boolean | undefined {
         switch (result) {
             case 1:
                 console.log("Player one wins!")
@@ -192,7 +192,7 @@ class gameRules {
                 display.resetSections()
                 this.gameOverScreen()
                 this.rounds = 0;
-                break;
+                return true;
             case 2:
                 console.log("Player two wins!")
                 console.log("Cleaning the screen and resetting")
@@ -200,7 +200,7 @@ class gameRules {
                 display.getModal("Player Two Won", "Repeat the game")
                 display.resetSections()
                 this.rounds = 0
-                break;
+                return true
             case 3:
                 console.log("Draw!")
                 console.log("Cleaning the screen and resetting")
@@ -208,7 +208,7 @@ class gameRules {
                 display.getModal("DRAW", "Repeat the game?")
                 display.resetSections()
                 this.rounds = 0;
-                break;
+                return true
             default:
                 break;
         }
@@ -234,6 +234,7 @@ class gameLogic {
     private playerTwo
     private display
     private rules
+    private gameOver: boolean| undefined = false;
 
     constructor() {
         this.playerOne = new Player("One", "X");
@@ -251,9 +252,9 @@ class gameLogic {
         sectionsContainer?.addEventListener("click", (event: MouseEvent) => {
             this.rules.incrementRound()
             let target = event.target as HTMLElement;
-
             // only runs this part, if the dataset- attribute isn't empty and the given target.dataset, nested inside, has no
             // other textContent than ""
+            if(this.gameOver === false){
             if (target.dataset.nr !== undefined) {
                 if (target.textContent === "") {
                     this.display.setIndex(parseInt(target.dataset.nr))
@@ -276,10 +277,13 @@ class gameLogic {
                     }
                     // check the conditions, the null/undefined will never happen because it falls through in the handleResult function
                     setTimeout(() => {
-                        this.rules.handleResult(this.rules.resultChecker()!, this.display)
+                        this.gameOver = this.rules.handleResult(this.rules.resultChecker()!, this.display)
+
                     }, 1000);
+                    
                 }
             } 
+        }
         })
     }
 
